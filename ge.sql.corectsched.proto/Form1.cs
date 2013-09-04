@@ -82,109 +82,61 @@ namespace ge.sql.corectsched.proto
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var s = checkedComboBoxEdit1.Text;
-            var hours = comboBox1.Text;
+            var checkeddays = checkedComboBoxEdit1.EditValue.ToString();        //  строка отмеченных дней (1, 3, 5)
+            var hours = comboBox1.Text;                                         //  часы ( 1 OR 2 OR 3)
+            
+            var arr = new[] {", "};                                             // строка для удаления запятых и пробелов
+            ResArr = checkeddays.Split(arr, StringSplitOptions.None);           // вычисленный массив отмеченных дней [1, 3, 5]
+            
+            var count = 0;                                                      // счетчик недель
+            var dayscount = 24/Convert.ToInt32(hours);                          // вычисляем общее количество дней
+            var weekscount = 24 / (ResArr.Count() * Convert.ToInt32(hours));    // количество недель (24 ак. часа / (количество дней * часы))
 
-            //var s = days;
-            var arr = new[] {", "};
-            ResArr = s.Split(arr, StringSplitOptions.None);
+            var firstcount = 0;                                                 // счетчик количества элем. массива дней
+            var finaldate = 0;                                                  // счетчик количества элем. вычисленного массива дней
+            
+            Dates = new string[dayscount];                                      // финально рассчитанный массив дат
 
-            var p = 0;
-            while (p < ResArr.Count())
+            var delta = 0 - (int)dateEdit1.DateTime.Date.DayOfWeek;             // разница между воскресеньем [0] и днем DateEdit1
+
+            DateTime sunday;
+            DateTime nextsunday;
+            if ((int) dateEdit1.DateTime.Date.DayOfWeek > Convert.ToInt32(ResArr[0])) // если первый день в списке миновал то прыгаем на след. неделю
             {
-                if (ResArr[p] == "mon")
+                sunday = dateEdit1.DateTime.Date.AddDays(delta).AddDays(7);
+                nextsunday = dateEdit1.DateTime.Date.AddDays(delta).AddDays(14);
+            }
+            else // иначе вычисляем воскресенье за спиной и впереди
+            {
+                sunday = dateEdit1.DateTime.Date.AddDays(delta);
+                nextsunday = dateEdit1.DateTime.Date.AddDays(delta).AddDays(7);
+            }
+
+            while (count < weekscount)                                          // от 0 и до тех пор пока не обойдем все недели
+            {
+                while (firstcount < ResArr.Count())                             // от 0 до количества дней в неделе
                 {
-                    ResArr[p] = "1";
-                    p++;
-                }
-                else
-                {
-                    if (ResArr[p] == "tue")
+                    if (ResArr[firstcount] == "0")                              // если это 0 (вск)
                     {
-                        ResArr[p] = "2";
-                        p++;
+                        Dates[finaldate] = sunday.AddDays(7).ToShortDateString(); // добавляем дату след воскресенья
                     }
                     else
                     {
-                        if (ResArr[p] == "wed")
-                        {
-                            ResArr[p] = "3";
-                            p++;
-                        }
-                        else
-                        {
-                            if (ResArr[p] == "thu")
-                            {
-                                ResArr[p] = "4";
-                                p++;
-                            }
-                            else
-                            {
-                                if (ResArr[p] == "fri")
-                                {
-                                    ResArr[p] = "5";
-                                    p++;
-                                }
-                                else
-                                {
-                                    if (ResArr[p] == "sat")
-                                    {
-                                        ResArr[p] = "6";
-                                        p++;
-                                    }
-                                    else
-                                    {
-                                        if (ResArr[p] == "sun")
-                                        {
-                                            ResArr[p] = "0";
-                                            p++;
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        Dates[finaldate] = sunday.AddDays(Convert.ToInt32(ResArr[firstcount])).ToShortDateString(); // иначе добавляем дату текущего элемента массива (1 - пн. - 01.10.13 и т.д.)
                     }
-                }
+                    firstcount++;   // плюсуем счетчик исходного массива
+                    finaldate++;    // плюсуем счетчик вычисляемого массива
+                } // неделю обошли
+
+                firstcount = 0; // обнуляем счетчик массива дней
+                count++;    // плюсуем счетчик недель
+                sunday = nextsunday; // двигаемся на неделю вперед
+                nextsunday = sunday.AddDays(7); // след. вск. + 1
             }
 
-            var count = 0;
-            var dayscount = 24/Convert.ToInt32(hours);
-            var arraycount = 0;
-            var arraycount2 = 0;
-            Dates = new string[dayscount];
-
-            var delta = (int) DayOfWeek.Sunday - (int) dateEdit1.DateTime.Date.DayOfWeek;
-            var monday = dateEdit1.DateTime.Date.AddDays(delta);
-            var nextmonday = dateEdit1.DateTime.Date.AddDays(delta).AddDays(7);
-
-
-            var weekscount = 24/(ResArr.Count()*Convert.ToInt32(hours));
-
-            while (count < weekscount)
-            {
-                while (arraycount < ResArr.Count())
-                {
-                    if (ResArr[arraycount] == "0")
-                    {
-                        Dates[arraycount2] = monday.AddDays(7).ToShortDateString();
-                    }
-                    else
-                    {
-                        Dates[arraycount2] = monday.AddDays(Convert.ToInt32(ResArr[arraycount])).ToShortDateString();
-                    }
-                    arraycount++;
-                    arraycount2++;
-                }
-
-                arraycount = 0;
-                count++;
-                monday = nextmonday;
-                nextmonday = monday.AddDays(7);
-            }
-
-            var a = Dates;
-            var b = new ArrayList(a);
-            gridControl1.DataSource = b;
+            //var a = Dates;
+            //var b = new ArrayList(Dates);
+            gridControl1.DataSource = new ArrayList(Dates);
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -230,6 +182,21 @@ namespace ge.sql.corectsched.proto
                 };
                 schedulerStorage.Appointments.Add(apt);
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            var checkeddays = checkedComboBoxEdit1.EditValue.ToString();        //  строка отмеченных дней (1, 3, 5)
+
+            var arr = new[] { ", " };                                             // строка для удаления запятых и пробелов
+            ResArr = checkeddays.Split(arr, StringSplitOptions.None);
+
+            labelControl1.Text = ResArr[0];
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SchedCalc.DatesArray(this, checkedComboBoxEdit1.EditValue.ToString(), Convert.ToInt32(comboBox1.Text), (int)dateEdit1.DateTime.DayOfWeek, dateEdit1.DateTime, textEdit1.Text, TimeSpan.Parse(timeEdit1.Time.ToShortTimeString()));
         }
     }
 }

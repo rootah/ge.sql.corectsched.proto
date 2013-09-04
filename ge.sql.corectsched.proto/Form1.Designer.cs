@@ -28,16 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraScheduler.TimeRuler timeRuler1 = new DevExpress.XtraScheduler.TimeRuler();
             DevExpress.XtraScheduler.TimeRuler timeRuler2 = new DevExpress.XtraScheduler.TimeRuler();
             this.schedulerControl = new DevExpress.XtraScheduler.SchedulerControl();
-            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage();
-            this.formAssistant1 = new DevExpress.XtraBars.FormAssistant();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
+            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
+            this.appointmentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.geprotoDataSet = new ge.sql.corectsched.proto.geprotoDataSet();
-            this.appointmentsBindingSource = new System.Windows.Forms.BindingSource();
+            this.resourcesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.formAssistant1 = new DevExpress.XtraBars.FormAssistant();
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
             this.appointmentsTableAdapter = new ge.sql.corectsched.proto.geprotoDataSetTableAdapters.AppointmentsTableAdapter();
-            this.resourcesBindingSource = new System.Windows.Forms.BindingSource();
             this.resourcesTableAdapter = new ge.sql.corectsched.proto.geprotoDataSetTableAdapters.ResourcesTableAdapter();
             this.button3 = new System.Windows.Forms.Button();
             this.dateEdit1 = new DevExpress.XtraEditors.DateEdit();
@@ -51,10 +52,13 @@
             this.dateNavigator1 = new DevExpress.XtraScheduler.DateNavigator();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.button5 = new System.Windows.Forms.Button();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.button6 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.geprotoDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.geprotoDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.resourcesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).BeginInit();
@@ -115,28 +119,28 @@
             this.schedulerStorage.Resources.Mappings.Image = "Image";
             this.schedulerStorage.Resources.Mappings.ParentId = "UniqueID";
             // 
-            // defaultLookAndFeel1
+            // appointmentsBindingSource
             // 
-            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2013 Light Gray";
+            this.appointmentsBindingSource.DataMember = "Appointments";
+            this.appointmentsBindingSource.DataSource = this.geprotoDataSet;
             // 
             // geprotoDataSet
             // 
             this.geprotoDataSet.DataSetName = "geprotoDataSet";
             this.geprotoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // appointmentsBindingSource
-            // 
-            this.appointmentsBindingSource.DataMember = "Appointments";
-            this.appointmentsBindingSource.DataSource = this.geprotoDataSet;
-            // 
-            // appointmentsTableAdapter
-            // 
-            this.appointmentsTableAdapter.ClearBeforeFill = true;
-            // 
             // resourcesBindingSource
             // 
             this.resourcesBindingSource.DataMember = "Resources";
             this.resourcesBindingSource.DataSource = this.geprotoDataSet;
+            // 
+            // defaultLookAndFeel1
+            // 
+            this.defaultLookAndFeel1.LookAndFeel.SkinName = "Office 2013 Light Gray";
+            // 
+            // appointmentsTableAdapter
+            // 
+            this.appointmentsTableAdapter.ClearBeforeFill = true;
             // 
             // resourcesTableAdapter
             // 
@@ -206,13 +210,13 @@
             this.checkedComboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.checkedComboBoxEdit1.Properties.Items.AddRange(new DevExpress.XtraEditors.Controls.CheckedListBoxItem[] {
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("mon", "mon"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("tue", "tue"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("wed", "wed"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("thu", "thu"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("fri", "fri"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("sat", "sat"),
-            new DevExpress.XtraEditors.Controls.CheckedListBoxItem("sun", "sun")});
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(1, "mon"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(2, "tue"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(3, "wed"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(4, "thu"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(5, "fri"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(6, "sat"),
+            new DevExpress.XtraEditors.Controls.CheckedListBoxItem(0, "sun")});
             this.checkedComboBoxEdit1.Size = new System.Drawing.Size(148, 20);
             this.checkedComboBoxEdit1.TabIndex = 18;
             // 
@@ -272,12 +276,43 @@
             this.gridView1.OptionsView.ShowGroupPanel = false;
             this.gridView1.OptionsView.ShowIndicator = false;
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(166, 10);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(67, 23);
+            this.button5.TabIndex = 30;
+            this.button5.Text = "get string";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Location = new System.Drawing.Point(239, 15);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(63, 13);
+            this.labelControl1.TabIndex = 31;
+            this.labelControl1.Text = "labelControl1";
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(166, 39);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(67, 23);
+            this.button6.TabIndex = 32;
+            this.button6.Text = "alt put";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Form1
             // 
             this.ActiveGlowColor = System.Drawing.Color.Empty;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 418);
+            this.Controls.Add(this.button6);
+            this.Controls.Add(this.labelControl1);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.dateNavigator1);
             this.Controls.Add(this.button4);
@@ -297,8 +332,8 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.geprotoDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.geprotoDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.resourcesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dateEdit1.Properties)).EndInit();
@@ -309,13 +344,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private DevExpress.XtraScheduler.SchedulerControl schedulerControl;
-        private DevExpress.XtraScheduler.SchedulerStorage schedulerStorage;
         private DevExpress.XtraBars.FormAssistant formAssistant1;
         private DevExpress.LookAndFeel.DefaultLookAndFeel defaultLookAndFeel1;
         private geprotoDataSet geprotoDataSet;
@@ -333,8 +368,12 @@
         private DevExpress.XtraEditors.TimeEdit timeEdit1;
         private System.Windows.Forms.Button button4;
         private DevExpress.XtraScheduler.DateNavigator dateNavigator1;
-        private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private System.Windows.Forms.Button button5;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.Button button6;
+        public DevExpress.XtraScheduler.SchedulerStorage schedulerStorage;
+        public DevExpress.XtraGrid.GridControl gridControl1;
 
     }
 }

@@ -162,12 +162,13 @@ namespace ge.sql.corectsched.proto
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var datesarr = SchedCalc._dates(this, checkedComboBoxEdit1.EditValue.ToString(), Convert.ToInt32(comboBox1.Text), (int)dateEdit1.DateTime.DayOfWeek, dateEdit1.DateTime);
-            
+            var datesarr = SchedCalc._dates(checkedComboBoxEdit1.EditValue.ToString(), Convert.ToInt32(comboBox1.Text), (int)dateEdit1.DateTime.DayOfWeek, dateEdit1.DateTime);
             var group = textEdit1.Text;
             var time = TimeSpan.Parse(timeEdit1.Time.ToShortTimeString());
             var addhour = Convert.ToInt16(comboBox1.Text);
-            const string subj = "Rozzary";for (int i = 0; i < datesarr.Count(); i++)
+            const string subj = "Rozzary";
+
+            for (int i = 0; i < datesarr.Count(); i++)
             {
                 var date = DateTime.Parse(datesarr[i]);
                 var apt = new Appointment(AppointmentType.Normal)
@@ -179,17 +180,9 @@ namespace ge.sql.corectsched.proto
                     LabelId = 2,
                     End = date.Add(time).AddHours(addhour)
                 };
+
                 schedulerStorage.Appointments.Add(apt);
             }
         }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-            var checkeddays = checkedComboBoxEdit1.EditValue.ToString();        //  строка отмеченных дней (1, 3, 5)
-
-            var arr = new[] { ", " };                                             // строка для удаления запятых и пробелов
-            ResArr = checkeddays.Split(arr, StringSplitOptions.None);
-
-            labelControl1.Text = ResArr[0];
-        }}
+    }
 }

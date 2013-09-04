@@ -10,7 +10,7 @@ namespace ge.sql.corectsched.proto
         static string[] _resArr;
         static string[] _datesarr;
 
-        public static string[] _dates(Form1 mainForm1, string days, int achours, int dayofweek, DateTime currentDateTime)
+        public static string[] _dates(string days, int achours, int dayofweek, DateTime currentDateTime)
         {
             DateTime sunday;
             DateTime nextsunday;

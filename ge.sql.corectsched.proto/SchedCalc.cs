@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections;
+using System.Globalization;
 using System.Linq;
-using DevExpress.XtraScheduler;
 
 namespace ge.sql.corectsched.proto
 {
@@ -63,6 +62,33 @@ namespace ge.sql.corectsched.proto
             }
 
             return _datesarr;
+        }
+
+        public static DateTime OneMoreDay(string days, DateTime date)
+        {
+            var daynum = (int)date.DayOfWeek;
+
+            var splitarr = new[] { ", " };
+            string[] calcArr = days.Split(splitarr, StringSplitOptions.None);
+
+            var index = Array.IndexOf(calcArr, daynum.ToString(CultureInfo.InvariantCulture));
+
+            var newdaynum = Convert.ToInt32(index < calcArr.Count() - 1 ? calcArr[index + 1] : calcArr[0]);
+
+            var delta = 0 - daynum;
+
+            DateTime sunday = date.Date.AddDays(delta);
+
+            if (daynum == 0)
+                sunday = sunday.AddDays(-7);
+            if (newdaynum == 0)
+                sunday = sunday.AddDays(7);
+            if (Array.IndexOf(calcArr, daynum.ToString(CultureInfo.InvariantCulture)) == calcArr.Count() - 1)
+                sunday = sunday.AddDays(7);
+
+            DateTime newdate = sunday.AddDays(newdaynum).Date;
+
+            return newdate;
         }
     }
 }

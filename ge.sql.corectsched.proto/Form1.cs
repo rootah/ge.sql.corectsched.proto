@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Collections;
 using System.Windows.Forms;
@@ -7,6 +10,7 @@ using DevExpress.XtraEditors;
 using DevExpress.XtraScheduler;
 using DevExpress.XtraScheduler.Commands;
 using DevExpress.XtraScheduler.Services;
+using ge.sql.corectsched.proto.geprotoDataSetTableAdapters;
 
 
 namespace ge.sql.corectsched.proto
@@ -171,18 +175,54 @@ namespace ge.sql.corectsched.proto
             for (int i = 0; i < datesarr.Count(); i++)
             {
                 var date = DateTime.Parse(datesarr[i]);
-                var apt = new Appointment(AppointmentType.Normal)
-                {
-                    Subject = subj,
-                    Start = date.Add(time),
-                    Location = group,
-                    StatusId = 2,
-                    LabelId = 2,
-                    End = date.Add(time).AddHours(addhour)
-                };
 
-                schedulerStorage.Appointments.Add(apt);
+                var apt = schedulerStorage.CreateAppointment(AppointmentType.Normal);
+                apt.Subject = subj;
+                apt.Start = date.Add(time);
+                apt.Location = group;
+                apt.StatusId = 2;
+                apt.LabelId = 2;
+                apt.End = date.Add(time).AddHours(addhour);
+                apt.CustomFields["Days"] = checkedComboBoxEdit1.EditValue.ToString();
+
+                schedulerStorage.Appointments.Add(apt);}
+        }
+
+        private void schedulerControl_SelectionChanged(object sender, EventArgs e)
+        {
+            if (schedulerControl.SelectedAppointments.Count == 1)
+            {
+                Appointment selectedApt = schedulerControl.SelectedAppointments[0];
+                var row = (DataRowView)selectedApt.GetSourceObject(schedulerStorage);
+                var newdate = SchedCalc.OneMoreDay(row["Days"].ToString(), DateTime.Parse(row["StartDate"].ToString()));
+                labelControl2.Text = newdate.ToShortDateString();
             }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Appointment selectedApt = schedulerControl.SelectedAppointments[0];
+                var row = (DataRowView)selectedApt.GetSourceObject(schedulerStorage);
+            var group = row["Location"].ToString();
+            var maxdate = appointmentsTableAdapter.GetLastDate(group);
+
+            var newdate = SchedCalc.OneMoreDay(row["Days"].ToString(), DateTime.Parse(maxdate.ToString()));
+
+            var time = DateTime.Parse(row["StartDate"].ToString()).TimeOfDay;
+            var endtime = DateTime.Parse(row["EndDate"].ToString()).TimeOfDay;
+            
+            var apt = schedulerStorage.CreateAppointment(AppointmentType.Normal);
+            apt.Subject = "New Rozzzary";
+            apt.Start = newdate.Add(time);
+            apt.Location = group;
+            apt.StatusId = 2;
+            apt.LabelId = 2;
+            apt.End = newdate.Add(endtime);
+            apt.CustomFields["Days"] = row["Days"];
+
+            schedulerStorage.Appointments.Add(apt);
+            
+            labelControl1.Text = maxdate.ToString();
         }
     }
 }

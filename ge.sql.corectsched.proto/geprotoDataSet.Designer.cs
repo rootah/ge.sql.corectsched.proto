@@ -342,7 +342,7 @@ namespace ge.sql.corectsched.proto {
             
             private global::System.Data.DataColumn columnRecurrenceInfo;
             
-            private global::System.Data.DataColumn columnCustomField1;
+            private global::System.Data.DataColumn columnDays;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -491,9 +491,9 @@ namespace ge.sql.corectsched.proto {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CustomField1Column {
+            public global::System.Data.DataColumn DaysColumn {
                 get {
-                    return this.columnCustomField1;
+                    return this.columnDays;
                 }
             }
             
@@ -534,7 +534,7 @@ namespace ge.sql.corectsched.proto {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public AppointmentsRow AddAppointmentsRow(int Type, System.DateTime StartDate, System.DateTime EndDate, bool AllDay, string Subject, string Location, string Description, int Status, int Label, int ResourceID, string ResourceIDs, string ReminderInfo, string RecurrenceInfo, string CustomField1) {
+            public AppointmentsRow AddAppointmentsRow(int Type, System.DateTime StartDate, System.DateTime EndDate, bool AllDay, string Subject, string Location, string Description, int Status, int Label, int ResourceID, string ResourceIDs, string ReminderInfo, string RecurrenceInfo, string Days) {
                 AppointmentsRow rowAppointmentsRow = ((AppointmentsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -551,7 +551,7 @@ namespace ge.sql.corectsched.proto {
                         ResourceIDs,
                         ReminderInfo,
                         RecurrenceInfo,
-                        CustomField1};
+                        Days};
                 rowAppointmentsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowAppointmentsRow);
                 return rowAppointmentsRow;
@@ -595,7 +595,7 @@ namespace ge.sql.corectsched.proto {
                 this.columnResourceIDs = base.Columns["ResourceIDs"];
                 this.columnReminderInfo = base.Columns["ReminderInfo"];
                 this.columnRecurrenceInfo = base.Columns["RecurrenceInfo"];
-                this.columnCustomField1 = base.Columns["CustomField1"];
+                this.columnDays = base.Columns["Days"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -629,8 +629,8 @@ namespace ge.sql.corectsched.proto {
                 base.Columns.Add(this.columnReminderInfo);
                 this.columnRecurrenceInfo = new global::System.Data.DataColumn("RecurrenceInfo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnRecurrenceInfo);
-                this.columnCustomField1 = new global::System.Data.DataColumn("CustomField1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCustomField1);
+                this.columnDays = new global::System.Data.DataColumn("Days", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDays);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnUniqueID}, true));
                 this.columnUniqueID.AutoIncrement = true;
@@ -645,7 +645,7 @@ namespace ge.sql.corectsched.proto {
                 this.columnResourceIDs.MaxLength = 2147483647;
                 this.columnReminderInfo.MaxLength = 2147483647;
                 this.columnRecurrenceInfo.MaxLength = 2147483647;
-                this.columnCustomField1.MaxLength = 2147483647;
+                this.columnDays.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1342,17 +1342,17 @@ namespace ge.sql.corectsched.proto {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CustomField1 {
+            public string Days {
                 get {
                     try {
-                        return ((string)(this[this.tableAppointments.CustomField1Column]));
+                        return ((string)(this[this.tableAppointments.DaysColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'CustomField1\' в таблице \'Appointments\' равно DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Days\' в таблице \'Appointments\' равно DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableAppointments.CustomField1Column] = value;
+                    this[this.tableAppointments.DaysColumn] = value;
                 }
             }
             
@@ -1514,14 +1514,14 @@ namespace ge.sql.corectsched.proto {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCustomField1Null() {
-                return this.IsNull(this.tableAppointments.CustomField1Column);
+            public bool IsDaysNull() {
+                return this.IsNull(this.tableAppointments.DaysColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCustomField1Null() {
-                this[this.tableAppointments.CustomField1Column] = global::System.Convert.DBNull;
+            public void SetDaysNull() {
+                this[this.tableAppointments.DaysColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1881,11 +1881,11 @@ namespace ge.sql.corectsched.proto.geprotoDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("ResourceIDs", "ResourceIDs");
             tableMapping.ColumnMappings.Add("ReminderInfo", "ReminderInfo");
             tableMapping.ColumnMappings.Add("RecurrenceInfo", "RecurrenceInfo");
-            tableMapping.ColumnMappings.Add("CustomField1", "CustomField1");
+            tableMapping.ColumnMappings.Add("Days", "Days");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Appointments] WHERE (([UniqueID] = @Original_UniqueID) AND ((@IsNull_Type = 1 AND [Type] IS NULL) OR ([Type] = @Original_Type)) AND ((@IsNull_StartDate = 1 AND [StartDate] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ((@IsNull_EndDate = 1 AND [EndDate] IS NULL) OR ([EndDate] = @Original_EndDate)) AND ((@IsNull_AllDay = 1 AND [AllDay] IS NULL) OR ([AllDay] = @Original_AllDay)) AND ((@IsNull_Subject = 1 AND [Subject] IS NULL) OR ([Subject] = @Original_Subject)) AND ((@IsNull_Location = 1 AND [Location] IS NULL) OR ([Location] = @Original_Location)) AND ((@IsNull_Status = 1 AND [Status] IS NULL) OR ([Status] = @Original_Status)) AND ((@IsNull_Label = 1 AND [Label] IS NULL) OR ([Label] = @Original_Label)) AND ((@IsNull_ResourceID = 1 AND [ResourceID] IS NULL) OR ([ResourceID] = @Original_ResourceID)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Appointments] WHERE (([UniqueID] = @Original_UniqueID) AND ((@IsNull_Type = 1 AND [Type] IS NULL) OR ([Type] = @Original_Type)) AND ((@IsNull_StartDate = 1 AND [StartDate] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ((@IsNull_EndDate = 1 AND [EndDate] IS NULL) OR ([EndDate] = @Original_EndDate)) AND ((@IsNull_AllDay = 1 AND [AllDay] IS NULL) OR ([AllDay] = @Original_AllDay)) AND ((@IsNull_Subject = 1 AND [Subject] IS NULL) OR ([Subject] = @Original_Subject)) AND ((@IsNull_Location = 1 AND [Location] IS NULL) OR ([Location] = @Original_Location)) AND ((@IsNull_Status = 1 AND [Status] IS NULL) OR ([Status] = @Original_Status)) AND ((@IsNull_Label = 1 AND [Label] IS NULL) OR ([Label] = @Original_Label)) AND ((@IsNull_ResourceID = 1 AND [ResourceID] IS NULL) OR ([ResourceID] = @Original_ResourceID)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UniqueID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UniqueID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -1908,8 +1908,8 @@ namespace ge.sql.corectsched.proto.geprotoDataSetTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResourceID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResourceID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Appointments] ([Type], [StartDate], [EndDate], [AllDay], [Subject], [Location], [Description], [Status], [Label], [ResourceID], [ResourceIDs], [ReminderInfo], [RecurrenceInfo], [CustomField1]) VALUES (@Type, @StartDate, @EndDate, @AllDay, @Subject, @Location, @Description, @Status, @Label, @ResourceID, @ResourceIDs, @ReminderInfo, @RecurrenceInfo, @CustomField1);
-SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Description, Status, Label, ResourceID, ResourceIDs, ReminderInfo, RecurrenceInfo, CustomField1 FROM Appointments WHERE (UniqueID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Appointments] ([Type], [StartDate], [EndDate], [AllDay], [Subject], [Location], [Description], [Status], [Label], [ResourceID], [ResourceIDs], [ReminderInfo], [RecurrenceInfo], [Days]) VALUES (@Type, @StartDate, @EndDate, @AllDay, @Subject, @Location, @Description, @Status, @Label, @ResourceID, @ResourceIDs, @ReminderInfo, @RecurrenceInfo, @Days);
+SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Description, Status, Label, ResourceID, ResourceIDs, ReminderInfo, RecurrenceInfo, Days FROM Appointments WHERE (UniqueID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StartDate", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StartDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1924,11 +1924,11 @@ SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Descriptio
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResourceIDs", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResourceIDs", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReminderInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReminderInfo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RecurrenceInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RecurrenceInfo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomField1", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomField1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Days", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Days", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Appointments] SET [Type] = @Type, [StartDate] = @StartDate, [EndDate] = @EndDate, [AllDay] = @AllDay, [Subject] = @Subject, [Location] = @Location, [Description] = @Description, [Status] = @Status, [Label] = @Label, [ResourceID] = @ResourceID, [ResourceIDs] = @ResourceIDs, [ReminderInfo] = @ReminderInfo, [RecurrenceInfo] = @RecurrenceInfo, [CustomField1] = @CustomField1 WHERE (([UniqueID] = @Original_UniqueID) AND ((@IsNull_Type = 1 AND [Type] IS NULL) OR ([Type] = @Original_Type)) AND ((@IsNull_StartDate = 1 AND [StartDate] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ((@IsNull_EndDate = 1 AND [EndDate] IS NULL) OR ([EndDate] = @Original_EndDate)) AND ((@IsNull_AllDay = 1 AND [AllDay] IS NULL) OR ([AllDay] = @Original_AllDay)) AND ((@IsNull_Subject = 1 AND [Subject] IS NULL) OR ([Subject] = @Original_Subject)) AND ((@IsNull_Location = 1 AND [Location] IS NULL) OR ([Location] = @Original_Location)) AND ((@IsNull_Status = 1 AND [Status] IS NULL) OR ([Status] = @Original_Status)) AND ((@IsNull_Label = 1 AND [Label] IS NULL) OR ([Label] = @Original_Label)) AND ((@IsNull_ResourceID = 1 AND [ResourceID] IS NULL) OR ([ResourceID] = @Original_ResourceID)));
-SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Description, Status, Label, ResourceID, ResourceIDs, ReminderInfo, RecurrenceInfo, CustomField1 FROM Appointments WHERE (UniqueID = @UniqueID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Appointments] SET [Type] = @Type, [StartDate] = @StartDate, [EndDate] = @EndDate, [AllDay] = @AllDay, [Subject] = @Subject, [Location] = @Location, [Description] = @Description, [Status] = @Status, [Label] = @Label, [ResourceID] = @ResourceID, [ResourceIDs] = @ResourceIDs, [ReminderInfo] = @ReminderInfo, [RecurrenceInfo] = @RecurrenceInfo, [Days] = @Days WHERE (([UniqueID] = @Original_UniqueID) AND ((@IsNull_Type = 1 AND [Type] IS NULL) OR ([Type] = @Original_Type)) AND ((@IsNull_StartDate = 1 AND [StartDate] IS NULL) OR ([StartDate] = @Original_StartDate)) AND ((@IsNull_EndDate = 1 AND [EndDate] IS NULL) OR ([EndDate] = @Original_EndDate)) AND ((@IsNull_AllDay = 1 AND [AllDay] IS NULL) OR ([AllDay] = @Original_AllDay)) AND ((@IsNull_Subject = 1 AND [Subject] IS NULL) OR ([Subject] = @Original_Subject)) AND ((@IsNull_Location = 1 AND [Location] IS NULL) OR ([Location] = @Original_Location)) AND ((@IsNull_Status = 1 AND [Status] IS NULL) OR ([Status] = @Original_Status)) AND ((@IsNull_Label = 1 AND [Label] IS NULL) OR ([Label] = @Original_Label)) AND ((@IsNull_ResourceID = 1 AND [ResourceID] IS NULL) OR ([ResourceID] = @Original_ResourceID)));
+SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Description, Status, Label, ResourceID, ResourceIDs, ReminderInfo, RecurrenceInfo, Days FROM Appointments WHERE (UniqueID = @UniqueID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StartDate", global::System.Data.SqlDbType.SmallDateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StartDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1943,7 +1943,7 @@ SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Descriptio
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResourceIDs", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResourceIDs", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ReminderInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ReminderInfo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RecurrenceInfo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "RecurrenceInfo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomField1", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomField1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Days", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Days", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UniqueID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UniqueID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Type", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -1976,13 +1976,19 @@ SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Descriptio
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Description" +
-                ", Status, Label, ResourceID, ResourceIDs, ReminderInfo, RecurrenceInfo, CustomFi" +
-                "eld1 FROM dbo.Appointments";
+                ", Status, Label, ResourceID, ResourceIDs, ReminderInfo, RecurrenceInfo, Days FRO" +
+                "M Appointments";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        MAX(StartDate) AS Expr1, Location\r\nFROM            Appointments\r\nGR" +
+                "OUP BY Location\r\nHAVING        (Location = @group)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@group", global::System.Data.SqlDbType.NVarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Location", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2136,7 +2142,7 @@ SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Descriptio
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> Type, global::System.Nullable<global::System.DateTime> StartDate, global::System.Nullable<global::System.DateTime> EndDate, global::System.Nullable<bool> AllDay, string Subject, string Location, string Description, global::System.Nullable<int> Status, global::System.Nullable<int> Label, global::System.Nullable<int> ResourceID, string ResourceIDs, string ReminderInfo, string RecurrenceInfo, string CustomField1) {
+        public virtual int Insert(global::System.Nullable<int> Type, global::System.Nullable<global::System.DateTime> StartDate, global::System.Nullable<global::System.DateTime> EndDate, global::System.Nullable<bool> AllDay, string Subject, string Location, string Description, global::System.Nullable<int> Status, global::System.Nullable<int> Label, global::System.Nullable<int> ResourceID, string ResourceIDs, string ReminderInfo, string RecurrenceInfo, string Days) {
             if ((Type.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Type.Value));
             }
@@ -2215,11 +2221,11 @@ SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Descriptio
             else {
                 this.Adapter.InsertCommand.Parameters[12].Value = ((string)(RecurrenceInfo));
             }
-            if ((CustomField1 == null)) {
+            if ((Days == null)) {
                 this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(CustomField1));
+                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(Days));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -2255,7 +2261,7 @@ SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Descriptio
                     string ResourceIDs, 
                     string ReminderInfo, 
                     string RecurrenceInfo, 
-                    string CustomField1, 
+                    string Days, 
                     int Original_UniqueID, 
                     global::System.Nullable<int> Original_Type, 
                     global::System.Nullable<global::System.DateTime> Original_StartDate, 
@@ -2345,11 +2351,11 @@ SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Descriptio
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(RecurrenceInfo));
             }
-            if ((CustomField1 == null)) {
+            if ((Days == null)) {
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(CustomField1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Days));
             }
             this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_UniqueID));
             if ((Original_Type.HasValue == true)) {
@@ -2459,7 +2465,7 @@ SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Descriptio
                     string ResourceIDs, 
                     string ReminderInfo, 
                     string RecurrenceInfo, 
-                    string CustomField1, 
+                    string Days, 
                     int Original_UniqueID, 
                     global::System.Nullable<int> Original_Type, 
                     global::System.Nullable<global::System.DateTime> Original_StartDate, 
@@ -2470,7 +2476,41 @@ SELECT UniqueID, Type, StartDate, EndDate, AllDay, Subject, Location, Descriptio
                     global::System.Nullable<int> Original_Status, 
                     global::System.Nullable<int> Original_Label, 
                     global::System.Nullable<int> Original_ResourceID) {
-            return this.Update(Type, StartDate, EndDate, AllDay, Subject, Location, Description, Status, Label, ResourceID, ResourceIDs, ReminderInfo, RecurrenceInfo, CustomField1, Original_UniqueID, Original_Type, Original_StartDate, Original_EndDate, Original_AllDay, Original_Subject, Original_Location, Original_Status, Original_Label, Original_ResourceID, Original_UniqueID);
+            return this.Update(Type, StartDate, EndDate, AllDay, Subject, Location, Description, Status, Label, ResourceID, ResourceIDs, ReminderInfo, RecurrenceInfo, Days, Original_UniqueID, Original_Type, Original_StartDate, Original_EndDate, Original_AllDay, Original_Subject, Original_Location, Original_Status, Original_Label, Original_ResourceID, Original_UniqueID);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<global::System.DateTime> GetLastDate(string group) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            if ((group == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(group));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<global::System.DateTime>();
+            }
+            else {
+                return new global::System.Nullable<global::System.DateTime>(((global::System.DateTime)(returnValue)));
+            }
         }
     }
     

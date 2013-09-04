@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             DevExpress.XtraScheduler.TimeRuler timeRuler1 = new DevExpress.XtraScheduler.TimeRuler();
             DevExpress.XtraScheduler.TimeRuler timeRuler2 = new DevExpress.XtraScheduler.TimeRuler();
             this.schedulerControl = new DevExpress.XtraScheduler.SchedulerControl();
-            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage(this.components);
-            this.appointmentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.schedulerStorage = new DevExpress.XtraScheduler.SchedulerStorage();
+            this.appointmentsBindingSource = new System.Windows.Forms.BindingSource();
             this.geprotoDataSet = new ge.sql.corectsched.proto.geprotoDataSet();
-            this.resourcesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.resourcesBindingSource = new System.Windows.Forms.BindingSource();
             this.formAssistant1 = new DevExpress.XtraBars.FormAssistant();
-            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel(this.components);
+            this.defaultLookAndFeel1 = new DevExpress.LookAndFeel.DefaultLookAndFeel();
             this.appointmentsTableAdapter = new ge.sql.corectsched.proto.geprotoDataSetTableAdapters.AppointmentsTableAdapter();
             this.resourcesTableAdapter = new ge.sql.corectsched.proto.geprotoDataSetTableAdapters.ResourcesTableAdapter();
             this.button3 = new System.Windows.Forms.Button();
@@ -55,6 +54,7 @@
             this.button5 = new System.Windows.Forms.Button();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.button6 = new System.Windows.Forms.Button();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerStorage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appointmentsBindingSource)).BeginInit();
@@ -90,14 +90,14 @@
             this.schedulerControl.Views.WorkWeekView.AppointmentDisplayOptions.ShowShadows = false;
             this.schedulerControl.Views.WorkWeekView.AppointmentDisplayOptions.StartTimeVisibility = DevExpress.XtraScheduler.AppointmentTimeVisibility.Always;
             this.schedulerControl.Views.WorkWeekView.AppointmentDisplayOptions.TimeDisplayType = DevExpress.XtraScheduler.AppointmentTimeDisplayType.Clock;
+            this.schedulerControl.Views.WorkWeekView.ShowFullWeek = true;
             this.schedulerControl.Views.WorkWeekView.TimeRulers.Add(timeRuler2);
+            this.schedulerControl.SelectionChanged += new System.EventHandler(this.schedulerControl_SelectionChanged);
             this.schedulerControl.PopupMenuShowing += new DevExpress.XtraScheduler.PopupMenuShowingEventHandler(this.schedulerControl_PopupMenuShowing);
             // 
             // schedulerStorage
             // 
-            this.schedulerStorage.Appointments.CustomFieldMappings.Add(new DevExpress.XtraScheduler.AppointmentCustomFieldMapping("CustomField1", "CustomField1"));
-            this.schedulerStorage.Appointments.CustomFieldMappings.Add(new DevExpress.XtraScheduler.AppointmentCustomFieldMapping("ResourceIDs", "ResourceIDs"));
-            this.schedulerStorage.Appointments.CustomFieldMappings.Add(new DevExpress.XtraScheduler.AppointmentCustomFieldMapping("UniqueID", "UniqueID"));
+            this.schedulerStorage.Appointments.CustomFieldMappings.Add(new DevExpress.XtraScheduler.AppointmentCustomFieldMapping("Days", "Days"));
             this.schedulerStorage.Appointments.DataSource = this.appointmentsBindingSource;
             this.schedulerStorage.Appointments.Mappings.AllDay = "AllDay";
             this.schedulerStorage.Appointments.Mappings.Description = "Description";
@@ -287,7 +287,7 @@
             // 
             // labelControl1
             // 
-            this.labelControl1.Location = new System.Drawing.Point(239, 15);
+            this.labelControl1.Location = new System.Drawing.Point(170, 98);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(63, 13);
             this.labelControl1.TabIndex = 31;
@@ -299,8 +299,17 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(67, 23);
             this.button6.TabIndex = 32;
-            this.button6.Text = "alt put";
+            this.button6.Text = "add day";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(97, 120);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(63, 13);
+            this.labelControl2.TabIndex = 33;
+            this.labelControl2.Text = "labelControl2";
             // 
             // Form1
             // 
@@ -308,6 +317,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1100, 418);
+            this.Controls.Add(this.labelControl2);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.labelControl1);
             this.Controls.Add(this.button5);
@@ -372,6 +382,7 @@
         private System.Windows.Forms.Button button6;
         public DevExpress.XtraScheduler.SchedulerStorage schedulerStorage;
         public DevExpress.XtraGrid.GridControl gridControl1;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
 
     }
 }

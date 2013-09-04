@@ -302,7 +302,6 @@
             this.button6.TabIndex = 32;
             this.button6.Text = "alt put";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 

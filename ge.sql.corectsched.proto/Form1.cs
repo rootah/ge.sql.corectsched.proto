@@ -162,15 +162,14 @@ namespace ge.sql.corectsched.proto
 
         private void button3_Click(object sender, EventArgs e)
         {
-            button1_Click(null, null);
+            var datesarr = SchedCalc._dates(this, checkedComboBoxEdit1.EditValue.ToString(), Convert.ToInt32(comboBox1.Text), (int)dateEdit1.DateTime.DayOfWeek, dateEdit1.DateTime);
+            
             var group = textEdit1.Text;
             var time = TimeSpan.Parse(timeEdit1.Time.ToShortTimeString());
             var addhour = Convert.ToInt16(comboBox1.Text);
-            var subj = textEdit1.Text;
-
-            for (int i = 0; i < Dates.Count(); i++)
+            const string subj = "Rozzary";for (int i = 0; i < datesarr.Count(); i++)
             {
-                var date = DateTime.Parse(Dates[i]);
+                var date = DateTime.Parse(datesarr[i]);
                 var apt = new Appointment(AppointmentType.Normal)
                 {
                     Subject = subj,
@@ -192,11 +191,5 @@ namespace ge.sql.corectsched.proto
             ResArr = checkeddays.Split(arr, StringSplitOptions.None);
 
             labelControl1.Text = ResArr[0];
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            SchedCalc.DatesArray(this, checkedComboBoxEdit1.EditValue.ToString(), Convert.ToInt32(comboBox1.Text), (int)dateEdit1.DateTime.DayOfWeek, dateEdit1.DateTime, textEdit1.Text, TimeSpan.Parse(timeEdit1.Time.ToShortTimeString()));
-        }
-    }
+        }}
 }
